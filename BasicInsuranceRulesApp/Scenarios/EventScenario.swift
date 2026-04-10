@@ -1,45 +1,88 @@
+import Foundation
 
-// MARK: Logic of Event Topic
-
-private func showEventResult(event: String) {
-    let insurance = userChoises.first ?? "event_none"
-    var resultText = ""
-    var payout = 0
-    var showPayoutDef = false
+struct EventScenario: TopicScenario {
     
-    if event == "event_cancelled" {
-        // Концерт отменили - возврат от организаторов
-        if insurance == "event_full" {
-            resultText = "Организаторы возвращают полную стоимость билета - 2 500 руб. Страховка не понадобилась."
-            payout = 0 // Возврат от организаторов, не от страховой
-        } else {
-            resultText = "Организаторы возвращают полную стоимость билета - 2 500 руб. Страховка не понадобилась."
+    func calculateResult(insurance: String, event: String) -> ScenarioResult {
+        
+        var resultText = ""
+        var payout = 0
+        var showPayoutDef = false
+        
+        switch (insurance, event) {
+            
+        case ("insurance", "cancelled"):
+            resultText = """
+            Организаторы возвращают полную стоимость билета - 2 500 руб. Страховка не понадобилась.
+
+            Траты: 150 руб
+            Выплата: 0 руб
+            Итог: -150 руб
+            """
             payout = 0
-        }
-    }
-    else if event == "event_dont_want" {
-        // Не хочу идти - неуважительная причина
-        if insurance == "event_full" {
-            resultText = "Страховая компания ничего не возмещает. Билет полностью сгорает."
+            
+        case ("insurance", "no_vibe"):
+            resultText = """
+            Страховая компания ничего не возмещает. Билет полностью сгорает.
+
+            Траты: 150 руб
+            Выплата: 0 руб
+            Итог: -150 руб
+            """
             payout = 0
-        } else {
-            resultText = "Страховая компания ничего не возмещает. Билет полностью сгорает."
-            payout = 0
-        }
-    }
-    else if event == "event_sick" {
-        // Плохое самочувствие - уважительная причина!
-        if insurance == "event_full" {
-            resultText = "Страховая компания возмещает полную стоимость билета!"
+            
+        case ("insurance", "feel_bad"):
+            resultText = """
+            Страховая компания возмещает полную стоимость билета!
+
+            Траты: 150 руб
+            Выплата: 2 500 руб
+            Итог: +2 350 руб
+            """
             payout = 2_500
-            showPayoutDef = true // Показать определение "страховая выплата"
-        } else {
-            resultText = "Страховая компания ничего не возмещает. Билет полностью сгорает."
+            showPayoutDef = true
+            
+            
+        case ("none_insurance", "cancelled"):
+            resultText = """
+            Организаторы возвращают полную стоимость билета - 2 500 руб. Страховка не понадобилась.
+
+            Траты: 0 руб
+            Выплата: 0 руб
+            Итог: 0 руб
+            """
+            payout = 0
+            
+        case ("none_insurance", "no_vibe"):
+            resultText = """
+            Страховая компания ничего не возмещает. Билет полностью сгорает.
+
+            Траты: 0 руб
+            Выплата: 0 руб
+            Итог: 0 руб
+            """
+            payout = 0
+            
+        case ("none_insurance", "feel_bad"):
+            resultText = """
+            Страховая компания ничего не возмещает. Билет полностью сгорает.
+
+            Траты: 0 руб
+            Выплата: 0 руб
+            Итог: 0 руб
+            """
+            payout = 0
+           
+        default:
+            resultText = "Произошла непредвиденная ситуация."
             payout = 0
         }
+        
+        return ScenarioResult(
+            text: resultText,
+            payout: payout,
+            showDefinition: showPayoutDef
+        )
     }
-    
-    
-    totalPayouts += payout
-    showResultPopup(text: resultText, showPayoutDef: showPayoutDef)
 }
+
+

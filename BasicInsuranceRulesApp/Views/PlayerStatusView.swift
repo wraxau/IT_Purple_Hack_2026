@@ -5,33 +5,34 @@ struct PlayerStatusView: View {
     let payouts: Int
     let onRestart: () -> Void
     
+    // 🔹 Явные цвета
+    private let darkBlue = Color(red: 47/255, green: 54/255, blue: 124/255)
+    private let lightBlue = Color(red: 192/255, green: 224/255, blue: 255/255)
+    
     // Вычисляем результат
     private var totalResult: Int {
         payouts - expenses
     }
     
     // Определяем статус
-    private var status: (title: String, description: String, iconName: String, color: Color) {
+    private var status: (title: String, description: String, imageName: String) {
         if totalResult > 0 {
             return (
                 "Финансовый стратег",
                 "Сценарии не просто пройдены - ситуации грамотно обыграны и ты остаёшься в выигрыше. Отличный результат!",
-                "trophy",  // Или имя твоей картинки "strategist"
-                Color(hex: "94A7FF")  // Голубой
+                "happy"  // Имя картинки для стратега
             )
         } else if totalResult == 0 {
             return (
                 "Балансировщик",
                 "Твои траты на страховки и компенсации уравновешены. При этом часть расходов, возможно, пришлось покрывать самостоятельно.",
-                "scale",  // Или имя твоей картинки "balancer" (кролик на макете)
-                Color(hex: "94A7FF")  // Голубой
+                "thinker"  // Имя картинки для балансировщика
             )
         } else {
             return (
                 "Исследователь",
                 "Несмотря на то, что некоторые ситуации не покрывались страховкой, получены новые знания, которые пригодятся в будущем. Полезный опыт!",
-                "magnifyingglass",  // Или имя твоей картинки "researcher"
-                Color(hex: "94A7FF")  // Голубой
+                "sad"  // Имя картинки для исследователя
             )
         }
     }
@@ -50,7 +51,7 @@ struct PlayerStatusView: View {
             // 1. Заголовок "Финал"
             Text("Финал")
                 .font(.custom("DelaGothicOne-Regular", size: 17))
-                .foregroundColor(.darkBlue)
+                .foregroundColor(darkBlue)
                 .padding(.top, 40)
             
             Spacer()
@@ -58,43 +59,42 @@ struct PlayerStatusView: View {
             // 2. Заголовок статуса
             Text("Ты - \(status.title)!")
                 .font(.custom("DelaGothicOne-Regular", size: 24))
-                .foregroundColor(.darkBlue)
+                .foregroundColor(darkBlue)
                 .multilineTextAlignment(.center)
-                .padding(.horizontal, 20)
+                .padding(.horizontal, 50)
                 .padding(.bottom, 20)
             
             // 3. Описание статуса
             Text(status.description)
                 .font(.custom("DelaGothicOne-Regular", size: 18))
-                .foregroundColor(.darkBlue)
+                .foregroundColor(darkBlue)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, 30)
                 .padding(.bottom, 40)
             
             // 4. Картинка статуса
-            Image(systemName: status.iconName)
-                .font(.system(size: 120))
-                .foregroundColor(status.color)
-                .frame(height: 200)
+            Image(status.imageName)
+                .resizable()
+                .scaledToFit()
+                .frame(height: 250)
                 .padding(.bottom, 40)
-            
-            // Если у тебя есть свои картинки вместо SF Symbols:
-            // Image(status.iconName)
-            //     .resizable()
-            //     .scaledToFit()
-            //     .frame(height: 200)
-            //     .padding(.bottom, 40)
             
             Spacer()
             
             // 5. Кнопка "К сценариям"
             Button(action: onRestart) {
                 Text("К сценариям")
+                    // 🔹 Явные стили вместо .appButtonStyle
                     .font(.custom("DelaGothicOne-Regular", size: 18))
+                    .foregroundColor(darkBlue)
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 80)
+                    .background(lightBlue)
+                    .cornerRadius(50)
             }
-            .appStyle(.variantAButton)
             .padding(.horizontal, 40)
             .padding(.bottom, 40)
+            
         }
         .background(Color(.systemBackground))
         .ignoresSafeArea(.keyboard)
