@@ -10,6 +10,7 @@
 		2287F96E2F819919004F5F5C /* BasicInsuranceRulesApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BasicInsuranceRulesApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+<<<<<<< HEAD
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
 		2287F9932F82E4B0004F5F5C /* Exceptions for "BasicInsuranceRulesApp" folder in "BasicInsuranceRulesApp" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
@@ -26,6 +27,11 @@
 			exceptions = (
 				2287F9932F82E4B0004F5F5C /* Exceptions for "BasicInsuranceRulesApp" folder in "BasicInsuranceRulesApp" target */,
 			);
+=======
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		2287F9702F819919004F5F5C /* BasicInsuranceRulesApp */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+>>>>>>> temp-merge
 			path = BasicInsuranceRulesApp;
 			sourceTree = "<group>";
 		};
