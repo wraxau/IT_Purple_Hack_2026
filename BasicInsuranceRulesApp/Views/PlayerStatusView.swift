@@ -5,10 +5,6 @@ struct PlayerStatusView: View {
     let payouts: Int
     let onRestart: () -> Void
     
-    // 🔹 Явные цвета
-    private let darkBlue = Color(red: 47/255, green: 54/255, blue: 124/255)
-    private let lightBlue = Color(red: 192/255, green: 224/255, blue: 255/255)
-    
     // Вычисляем результат
     private var totalResult: Int {
         payouts - expenses
@@ -50,24 +46,24 @@ struct PlayerStatusView: View {
             
             // 1. Заголовок "Финал"
             Text("Финал")
-                .font(.custom("DelaGothicOne-Regular", size: 17))
-                .foregroundColor(darkBlue)
+                .font(AppTypography.delaButton)
+                .foregroundColor(.textPrimary)
                 .padding(.top, 40)
             
             Spacer()
             
             // 2. Заголовок статуса
             Text("Ты - \(status.title)!")
-                .font(.custom("DelaGothicOne-Regular", size: 24))
-                .foregroundColor(darkBlue)
+                .font(AppTypography.delaTitle)
+                .foregroundColor(.textPrimary)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, 50)
                 .padding(.bottom, 20)
             
             // 3. Описание статуса
             Text(status.description)
-                .font(.custom("DelaGothicOne-Regular", size: 18))
-                .foregroundColor(darkBlue)
+                .font(AppTypography.delaBody)
+                .foregroundColor(.textPrimary)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, 30)
                 .padding(.bottom, 40)
@@ -85,18 +81,18 @@ struct PlayerStatusView: View {
             Button(action: onRestart) {
                 Text("К сценариям")
                     // 🔹 Явные стили вместо .appButtonStyle
-                    .font(.custom("DelaGothicOne-Regular", size: 18))
-                    .foregroundColor(darkBlue)
+                    .font(AppTypography.delaBody)
+                    .foregroundColor(.textPrimary)
                     .frame(maxWidth: .infinity)
                     .frame(height: 80)
-                    .background(lightBlue)
+                    .background(Color.lightBlue)
                     .cornerRadius(50)
             }
             .padding(.horizontal, 40)
             .padding(.bottom, 40)
             
         }
-        .background(Color(.systemBackground))
+        .background(Color.surface)
         .ignoresSafeArea(.keyboard)
     }
 }

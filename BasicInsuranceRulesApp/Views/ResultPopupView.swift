@@ -9,12 +9,6 @@ struct ResultPopupView: View {
     let onClose: () -> Void
     
 
-    private let darkBlue = Color(red: 47/255, green: 54/255, blue: 124/255)
-    private let lime = Color(red: 226/255, green: 251/255, blue: 134/255)
-    private let pinkCust = Color(red: 255/255, green: 178/255, blue: 247/255)
-    private let indigoBlue = Color(red: 136/255, green: 162/255, blue: 255/255)
-    private let blackColor = Color(red: 0, green: 0, blue: 0)
-    
     private var resultImageName: String {
         if total > 0 {
             return "happy"      // Выиграл
@@ -36,7 +30,7 @@ struct ResultPopupView: View {
     var body: some View {
         ZStack {
             // Затемнение фона
-            Color.black.opacity(0.4)
+            Color.overlay.opacity(0.4)
                 .ignoresSafeArea()
                 .onTapGesture {
                     onClose()
@@ -53,12 +47,12 @@ struct ResultPopupView: View {
                 
                 // Заголовок
                 Text("Результат")
-                    .font(.system(size: 16, weight: .regular))
-                       .foregroundColor(.black)
+                    .font(AppTypography.systemBody)
+                    .foregroundColor(.onLight)
                 
                 Text(resultText)
-                    .font(.system(size: 16, weight: .regular))
-                    .foregroundColor(blackColor)
+                    .font(AppTypography.systemBody)
+                    .foregroundColor(.onLight)
                     .multilineTextAlignment(.center)
                     .padding(.horizontal, 10)
                 
@@ -66,52 +60,52 @@ struct ResultPopupView: View {
                 VStack(alignment: .leading, spacing: 8) {
                     HStack {
                         Text("Траты:")
-                            .font(.system(size: 16, weight: .regular))
-                               .foregroundColor(.black)
+                            .font(AppTypography.systemBody)
+                            .foregroundColor(.onLight)
                             
                         Text("\(formatNumber(expenses)) руб")
-                            .font(.system(size: 16, weight: .regular))
-                               .foregroundColor(.black)
+                            .font(AppTypography.systemBody)
+                            .foregroundColor(.onLight)
                     }
                     
                     HStack {
                         Text("Выплата:")
-                            .font(.system(size: 16, weight: .regular))
-                               .foregroundColor(.black)
+                            .font(AppTypography.systemBody)
+                            .foregroundColor(.onLight)
                         Text("\(formatNumber(payout)) руб")
-                            .font(.system(size: 16, weight: .regular))
-                               .foregroundColor(.black)
+                            .font(AppTypography.systemBody)
+                            .foregroundColor(.onLight)
                     }
                     
                     HStack {
                         Text("Итог:")
-                            .font(.system(size: 16, weight: .regular))
-                               .foregroundColor(.black)
+                            .font(AppTypography.systemBody)
+                            .foregroundColor(.onLight)
                         Text("\(formatNumber(total)) руб")
-                            .font(.system(size: 16, weight: .regular))
-                               .foregroundColor(.black)
+                            .font(AppTypography.systemBody)
+                            .foregroundColor(.onLight)
                     }
                 }
                 .padding(12)
-                .background(Color(.systemBackground).opacity(0.95))
+                .background(Color.surface.opacity(0.95))
                 .cornerRadius(12)
                 .padding(.horizontal, 10)
                 
                 // Кнопка "Понятно" (лаймовая)
                 Button(action: onClose) {
                     Text("Понятно")
-                        .font(.system(size: 16, weight: .regular))
-                           .foregroundColor(.black)   
+                        .font(AppTypography.systemBody)
+                        .foregroundColor(.onLight)
                         .frame(maxWidth: .infinity)
                         .frame(height: 48)
-                        .background(lime)
+                        .background(Color.lime)
                         .cornerRadius(20)
                 }
                 .padding(.top, 10)
                 
             }
             .padding(24)
-            .background(Color(.systemBackground))
+            .background(Color.surface)
             .cornerRadius(24)
             .shadow(color: .black.opacity(0.2), radius: 20, y: 10)
             .padding(.horizontal, 30)

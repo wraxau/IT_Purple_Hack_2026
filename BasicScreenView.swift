@@ -5,6 +5,9 @@ struct BasicScreenView: View {
     let onButtonTap: (String) -> Void
     
     private let darkBlue = Color(red: 47/255, green: 54/255, blue: 124/255)
+    private var isThemeEndingMenuScreen: Bool {
+        config.title == "Что делаем дальше?" && (config.image == nil || config.image?.isEmpty == true)
+    }
     
     private var textTopPadding: CGFloat {
         if let imageName = config.image, !imageName.isEmpty {
@@ -15,6 +18,10 @@ struct BasicScreenView: View {
     }
 
     private var buttonsTopPadding: CGFloat {
+        if isThemeEndingMenuScreen {
+            return 50
+        }
+
         let hasImage = config.image != nil && !config.image!.isEmpty
         let hasText = config.text != nil && !config.text!.isEmpty
         
@@ -31,7 +38,7 @@ struct BasicScreenView: View {
             Text(config.title ?? "Тема")
                 .font(.custom("DelaGothicOne-Regular", size: 17))
                 .foregroundColor(darkBlue)
-                .padding(.top, 40)
+                .padding(.top, isThemeEndingMenuScreen ? 220 : 40)
             
             if let imageName = config.image, !imageName.isEmpty {
                 Image(imageName)
@@ -50,7 +57,11 @@ struct BasicScreenView: View {
                     .padding(.top, textTopPadding)
             }
             
-            Spacer()
+            if isThemeEndingMenuScreen {
+                Spacer(minLength: 30)
+            } else {
+                Spacer()
+            }
             
             VStack(spacing: 22) {
                 ForEach(Array(config.buttons.enumerated()), id: \.offset) { index, button in

@@ -3,27 +3,19 @@ import SwiftUI
 struct MenuView: View {
     let onSelect: (String) -> Void
     
-    // Явные цвета из твоего AppButtonStyle
-    private let lightBlue = Color(red: 192/255, green: 224/255, blue: 255/255)    // #C0E0FF
-    private let indigoBlue = Color(red: 136/255, green: 162/255, blue: 255/255)    // #88A2FF
-    private let pinkCust = Color(red: 255/255, green: 178/255, blue: 247/255)      // #FFB2F7
-    private let lime = Color(red: 226/255, green: 251/255, blue: 134/255)          // #E2FB86
-    private let darkBlue = Color(red: 37/255, green: 58/255, blue: 130/255)        // #253A82
-    private let purpleCust = Color(red: 167/255, green: 148/255, blue: 255/255)    // #A794FF
-    
     var body: some View {
         VStack(spacing: 0) {
             
             // 1. Заголовок "Сценарии"
             Text("Сценарии")
-                .font(.custom("DelaGothicOne-Regular", size: 17))
-                .foregroundColor(darkBlue)
+                .font(AppTypography.delaButton)
+                .foregroundColor(.textPrimary)
                 .padding(.top, 40)
             
             // 2. Заголовок "Выбери тему"
             Text("Выбери тему")
-                .font(.custom("DelaGothicOne-Regular", size: 24))
-                .foregroundColor(darkBlue)
+                .font(AppTypography.delaTitle)
+                .foregroundColor(.textPrimary)
                 .padding(.top, 184)
             
             // 3. Сетка кнопок (2 колонки)
@@ -40,10 +32,10 @@ struct MenuView: View {
                         onSelect("phone")
                     }) {
                         Text("Телефон")
-                            .font(.custom("DelaGothicOne-Regular", size: 17))
-                            .foregroundColor(lime)
+                            .font(AppTypography.delaButton)
+                            .foregroundColor(.lime)
                             .frame(width: 172, height: 97)
-                            .background(indigoBlue)
+                            .background(Color.indigoBlue)
                             .cornerRadius(50)
                     }
                     
@@ -54,10 +46,10 @@ struct MenuView: View {
                         onSelect("pet")
                     }) {
                         Text("Питомцы")
-                            .font(.custom("DelaGothicOne-Regular", size: 17))
-                            .foregroundColor(darkBlue)
+                            .font(AppTypography.delaButton)
+                            .foregroundColor(.textPrimary)
                             .frame(width: 172, height: 97)
-                            .background(lime)
+                            .background(Color.lime)
                             .cornerRadius(50)
                     }
                     
@@ -68,10 +60,10 @@ struct MenuView: View {
                         onSelect("sport")
                     }) {
                         Text("Спорт")
-                            .font(.custom("DelaGothicOne-Regular", size: 17))
-                            .foregroundColor(pinkCust)
+                            .font(AppTypography.delaButton)
+                            .foregroundColor(.pinkCust)
                             .frame(width: 172, height: 97)
-                            .background(darkBlue)
+                            .background(Color.darkBlue)
                             .cornerRadius(50)
                     }
                     
@@ -82,10 +74,10 @@ struct MenuView: View {
                         onSelect("travel")
                     }) {
                         Text("Путешествие")
-                            .font(.custom("DelaGothicOne-Regular", size: 17))
-                            .foregroundColor(lime)
+                            .font(AppTypography.delaButton)
+                            .foregroundColor(.lime)
                             .frame(width: 172, height: 97)
-                            .background(pinkCust)
+                            .background(Color.pinkCust)
                             .cornerRadius(50)
                     }
                     
@@ -96,10 +88,10 @@ struct MenuView: View {
                         onSelect("event")
                     }) {
                         Text("Мероприятие")
-                            .font(.custom("DelaGothicOne-Regular", size: 17))
-                            .foregroundColor(indigoBlue)
+                            .font(AppTypography.delaButton)
+                            .foregroundColor(.indigoBlue)
                             .frame(width: 172, height: 97)
-                            .background(lightBlue)
+                            .background(Color.lightBlue)
                             .cornerRadius(50)
                     }
                     
@@ -110,10 +102,10 @@ struct MenuView: View {
                         onSelect("scammer")
                     }) {
                         Text("Мошенники")
-                            .font(.custom("DelaGothicOne-Regular", size: 17))
-                            .foregroundColor(lightBlue)
+                            .font(AppTypography.delaButton)
+                            .foregroundColor(.lightBlue)
                             .frame(width: 172, height: 97)
-                            .background(purpleCust)
+                            .background(Color.purpleCust)
                             .cornerRadius(50)
                     }
                     
@@ -124,7 +116,7 @@ struct MenuView: View {
             
             Spacer()
         }
-        .background(Color.white)
+        .background(Color.appBackground)
     }
 }
 

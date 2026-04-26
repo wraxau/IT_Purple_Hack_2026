@@ -1,7 +1,7 @@
 import SwiftUI
 import Foundation
 
-@Observable // property wrapper @Observable означает, что за этим объектом идет наблюдение и если что-то здесь будет меняться - View будет перерисовываться, отображая новое состояние
+@Observable
 class GameViewModel {
     
     
@@ -146,7 +146,7 @@ class GameViewModel {
     }
     
     //Показывает попап с результатом сценария
-    // @escaping ставлю, чтобы функция дожила до момента, когда порльзователь нажмет закрыть popUp окно
+    // @escaping ставлю, чтобы функция дожила до момента, когда пользователь нажмет закрыть popUp окно
     func showPopup(_ config: PopUpWindowConfig, onClosed: @escaping () -> Void) {
         activePopup = config
         onPopupClosed = onClosed

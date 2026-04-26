@@ -5,12 +5,6 @@ struct FinalMoneyView: View {
     let payouts: Int
     let onNext: () -> Void
 
-    private let darkBlue = Color(red: 47/255, green: 54/255, blue: 124/255)
-    private let darkGray = Color(red: 47/255, green: 54/255, blue: 124/255)      // #2D3748
-    private let pinkLight = Color(red: 255/255, green: 178/255, blue: 247/255)  // #FFB6C1
-    private let limeLight = Color(red: 226/255, green: 251/255, blue: 134/255)  // #E0FF94
-    private let purpleLight = Color(red: 167/255, green: 148/255, blue: 255/255)
-    
     // Вычисляем итог
     private var totalResult: Int {
         payouts - expenses
@@ -29,54 +23,54 @@ struct FinalMoneyView: View {
             
             // 1. Заголовок "Финал"
             Text("Финал")
-                .font(.system(size: 16, weight: .regular))
-                .foregroundColor(.black)
+                .font(AppTypography.systemCaption)
+                .foregroundColor(.onLight)
                 .padding(.top, 40)
             
             Spacer()
             
             // 2. Приветствие
             Text("Ура! Вы прошли игру")
-                .font(.custom("DelaGothicOne-Regular", size: 24))
-                .foregroundColor(darkBlue)
+                .font(AppTypography.delaTitle)
+                .foregroundColor(.textPrimary)
                 .padding(.bottom, 40)
             
             VStack(spacing: 16) {
                 
                 VStack(spacing: 4) {
                     Text("Суммарные траты")
-                        .font(.custom("DelaGothicOne-Regular", size: 18))
+                        .font(AppTypography.delaBody)
                     Text(": \(formatNumber(expenses)) руб")
-                        .font(.custom("DelaGothicOne-Regular", size: 18))
+                        .font(AppTypography.delaBody)
                 }
-                .foregroundColor(pinkLight)
+                .foregroundColor(.pinkCust)
                 .frame(maxWidth: .infinity)
                 .frame(height: 80)
-                .background(darkGray)
+                .background(Color.darkBlue)
                 .cornerRadius(50)
                 
                 VStack(spacing: 4) {
                     Text("Суммарная выплата")
-                        .font(.custom("DelaGothicOne-Regular", size: 18))
+                        .font(AppTypography.delaBody)
                     Text(": \(formatNumber(payouts)) руб")
-                        .font(.custom("DelaGothicOne-Regular", size: 18))
+                        .font(AppTypography.delaBody)
                 }
-                .foregroundColor(limeLight)
+                .foregroundColor(.lime)
                 .frame(maxWidth: .infinity)
                 .frame(height: 80)
-                .background(pinkLight)
+                .background(Color.pinkCust)
                 .cornerRadius(50)
                 
                 VStack(spacing: 4) {
                     Text("Суммарный итог")
-                        .font(.custom("DelaGothicOne-Regular", size: 18))
+                        .font(AppTypography.delaBody)
                     Text(": \(formatNumber(totalResult)) руб")
-                        .font(.custom("DelaGothicOne-Regular", size: 18))
+                        .font(AppTypography.delaBody)
                 }
-                .foregroundColor(limeLight)
+                .foregroundColor(.lime)
                 .frame(maxWidth: .infinity)
                 .frame(height: 80)
-                .background(purpleLight)
+                .background(Color.purpleCust)
                 .cornerRadius(50)
                 
             }
@@ -86,18 +80,18 @@ struct FinalMoneyView: View {
 
             Button(action: onNext) {
                 Text("Дальше")
-                    .font(.custom("DelaGothicOne-Regular", size: 17))
-                    .foregroundColor(darkBlue)
+                    .font(AppTypography.delaButton)
+                    .foregroundColor(.textPrimary)
                     .frame(maxWidth: .infinity)
                     .frame(height: 54)
-                    .background(Color(red: 226/255, green: 251/255, blue: 134/255)) // lime
+                    .background(Color.lime)
                     .cornerRadius(50)
             }
             .padding(.horizontal, 40)
             .padding(.bottom, 40)
             
         }
-        .background(Color(.systemBackground))
+        .background(Color.surface)
         .ignoresSafeArea(.keyboard)
     }
 }

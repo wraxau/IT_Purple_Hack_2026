@@ -1,5 +1,18 @@
 import SwiftUI
 
+enum AppTypography {
+    static let delaTitleLarge = Font.custom("DelaGothicOne-Regular", size: 28)
+    static let delaTitle = Font.custom("DelaGothicOne-Regular", size: 24)
+    static let delaSubtitle = Font.custom("DelaGothicOne-Regular", size: 20)
+    static let delaBody = Font.custom("DelaGothicOne-Regular", size: 18)
+    static let delaButton = Font.custom("DelaGothicOne-Regular", size: 17)
+    static let delaButtonSmall = Font.custom("DelaGothicOne-Regular", size: 15)
+    static let systemBody = Font.system(size: 17, weight: .regular)
+    static let systemButton = Font.system(size: 17, weight: .medium)
+    static let systemTitle = Font.system(size: 20, weight: .medium)
+    static let systemCaption = Font.system(size: 16, weight: .regular)
+}
+
 enum AppButtonStyle: CaseIterable {
     case understandButton
     case variantAButton
@@ -43,7 +56,7 @@ enum AppButtonStyle: CaseIterable {
     var titleColor: Color {
         switch self {
         case .understandButton:
-            return Color.black
+            return .onLight
         case .chooseAnotherTopicButton, .variantAButton, .firstButton, .howItWorksButton, .eventMenu:
             return .indigoBlue
         case .skipButton, .forFirstScreenButton, .petMenu:
@@ -56,8 +69,7 @@ enum AppButtonStyle: CaseIterable {
             return .lightBlue
         }
     }
-    
-    // на самом деле это ширина
+
     var height: CGFloat {
         switch self {
         case .chooseAnotherTopicButton, .stopGameButton, .variantAButton, .variantBButton, .variantCButton, .firstButton, .secondButton, .petMenu, .phoneMenu, .eventMenu, .scammersMenu, .sportMenu, .travelMenu:
@@ -68,9 +80,7 @@ enum AppButtonStyle: CaseIterable {
             return 54
         }
     }
-    
-    
-    // на смаом деле это высота
+
     var width: CGFloat {
         switch self {
         case .forFirstScreenButton:
@@ -91,9 +101,9 @@ enum AppButtonStyle: CaseIterable {
     var font: Font {
         switch self {
         case .understandButton:
-            return Font.system(size: 17, weight: .medium)
+            return AppTypography.systemButton
         default:
-            return Font.custom("DelaGothicOne-Regular", size: 17)
+            return AppTypography.delaButton
         }
     }
     

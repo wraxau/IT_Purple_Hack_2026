@@ -6,15 +6,11 @@
 	objectVersion = 77;
 	objects = {
 
-/* Begin PBXBuildFile section */
-		2285A5CF2F9E5E1200215410 /* README 2.md in Resources */ = {isa = PBXBuildFile; fileRef = 2285A5BD2F9E5E1200215410 /* README 2.md */; };
-/* End PBXBuildFile section */
-
 /* Begin PBXFileReference section */
-		2285A5BD2F9E5E1200215410 /* README 2.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "README 2.md"; sourceTree = "<group>"; };
 		2287F96E2F819919004F5F5C /* BasicInsuranceRulesApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BasicInsuranceRulesApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+<<<<<<< HEAD
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
 		2287F9932F82E4B0004F5F5C /* Exceptions for "BasicInsuranceRulesApp" folder in "BasicInsuranceRulesApp" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
@@ -26,16 +22,16 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		2285A5FE2F9E5F2B00215410 /* Screenshots */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = Screenshots;
-			sourceTree = "<group>";
-		};
 		2287F9702F819919004F5F5C /* BasicInsuranceRulesApp */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				2287F9932F82E4B0004F5F5C /* Exceptions for "BasicInsuranceRulesApp" folder in "BasicInsuranceRulesApp" target */,
 			);
+=======
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		2287F9702F819919004F5F5C /* BasicInsuranceRulesApp */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+>>>>>>> temp-merge
 			path = BasicInsuranceRulesApp;
 			sourceTree = "<group>";
 		};
@@ -55,8 +51,6 @@
 		2287F9652F819919004F5F5C = {
 			isa = PBXGroup;
 			children = (
-				2285A5BD2F9E5E1200215410 /* README 2.md */,
-				2285A5FE2F9E5F2B00215410 /* Screenshots */,
 				2287F9702F819919004F5F5C /* BasicInsuranceRulesApp */,
 				2287F96F2F819919004F5F5C /* Products */,
 			);
@@ -86,7 +80,6 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				2285A5FE2F9E5F2B00215410 /* Screenshots */,
 				2287F9702F819919004F5F5C /* BasicInsuranceRulesApp */,
 			);
 			name = BasicInsuranceRulesApp;
@@ -135,7 +128,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2285A5CF2F9E5E1200215410 /* README 2.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

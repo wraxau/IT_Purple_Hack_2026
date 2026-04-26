@@ -62,7 +62,7 @@ struct ContentView: View {
             }
             
             if let popupConfig = model.activePopup {
-                Color.black.opacity(0.4)
+                Color.overlay.opacity(0.4)
                     .ignoresSafeArea()
                 
                 PopupView(config: popupConfig) {

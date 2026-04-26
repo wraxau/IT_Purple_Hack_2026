@@ -4,13 +4,10 @@ struct HowItWorksView: View {
     let config: HowItWorksScreen
     let onClose: () -> Void
     
-    private let darkBlue = Color(red: 47/255, green: 54/255, blue: 124/255)
-    private let lime = Color(red: 226/255, green: 251/255, blue: 134/255)
-    
     var body: some View {
         ZStack {
             // Затемнение фона
-            Color.black.opacity(0.4)
+            Color.overlay.opacity(0.4)
                 .ignoresSafeArea()
                 .onTapGesture {
                     onClose()
@@ -23,10 +20,10 @@ struct HowItWorksView: View {
                     // Крестик слева
                     Button(action: onClose) {
                         Image(systemName: "xmark")
-                            .font(.system(size: 20, weight: .medium))
-                            .foregroundColor(.black)
+                            .font(AppTypography.systemTitle)
+                            .foregroundColor(.onLight)
                             .frame(width: 44, height: 44)
-                            .background(Color.gray.opacity(0.1))
+                            .background(Color.surfaceMuted)
                             .clipShape(Circle())
                     }
                     
@@ -34,7 +31,7 @@ struct HowItWorksView: View {
                     
                     // Заголовок
                     Text("Как это работает?")
-                        .font(Font.system(size: 17, weight: .semibold))
+                        .font(AppTypography.systemBody)
                         .foregroundColor(.black)
                     
                     Spacer()
@@ -42,10 +39,10 @@ struct HowItWorksView: View {
                     // Галочка справа
                     Button(action: onClose) {
                         Image(systemName: "checkmark")
-                            .font(.system(size: 20, weight: .medium))
-                            .foregroundColor(.black)
+                            .font(AppTypography.systemTitle)
+                            .foregroundColor(.onLight)
                             .frame(width: 44, height: 44)
-                            .background(lime.opacity(0.3))
+                            .background(Color.lime.opacity(0.3))
                             .clipShape(Circle())
                     }
                 }
@@ -56,7 +53,7 @@ struct HowItWorksView: View {
                 ScrollView {
                     VStack(alignment: .leading, spacing: 20) {
                         ForEach(Array(config.steps.enumerated()), id: \.offset) { index, step in
-                            StepView(stepNumber: index + 1, stepText: step, darkBlue: darkBlue)
+                            StepView(stepNumber: index + 1, stepText: step, textColor: .black)
                         }
                     }
                     .padding(.horizontal, 20)
@@ -64,7 +61,7 @@ struct HowItWorksView: View {
                 }
             }
             .frame(maxWidth: 400)
-            .background(Color(.systemBackground))
+            .background(Color.surface)
             .cornerRadius(24)
             .padding(.horizontal, 20)
         }
@@ -75,7 +72,7 @@ struct HowItWorksView: View {
 struct StepView: View {
     let stepNumber: Int
     let stepText: String
-    let darkBlue: Color
+    let textColor: Color
     
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
@@ -87,22 +84,20 @@ struct StepView: View {
             // Заголовок шага (номер + текст)
             HStack(alignment: .top, spacing: 8) {
                 Text("\(stepNumber).")
-                    .font(Font.system(size: 17, weight: .semibold))
-                    .fontWeight(.bold)
-                    .foregroundColor(.black)
+                    .font(AppTypography.systemBody)
+                    .foregroundColor(textColor)
                 
                 Text(title)
-                    .font(Font.system(size: 17, weight: .semibold))
-                    .fontWeight(.bold)
-                    .foregroundColor(.black)
+                    .font(AppTypography.systemBody)
+                    .foregroundColor(textColor)
                     .fixedSize(horizontal: false, vertical: true)
             }
             
             // Описание шага
             if !description.isEmpty {
                 Text(description)
-                    .font(Font.system(size: 17, weight: .semibold))
-                    .foregroundColor(.black)
+                    .font(AppTypography.systemBody)
+                    .foregroundColor(textColor)
                     .padding(.leading, 24)
                     .fixedSize(horizontal: false, vertical: true)
             }

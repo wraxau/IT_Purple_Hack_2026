@@ -7,33 +7,35 @@ struct ThemeEndingMenuView: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            
             Text(topicName)
-                .font(.custom("DelaGothicOne-Regular", size: 17))
+                .font(AppTypography.delaButton)
                 .foregroundColor(.darkBlue)
                 .padding(.top, 40)
-            
+
             Spacer()
-            
-            Text("Что делаем дальше?")
-                .font(.custom("DelaGothicOne-Regular", size: 24))
-                .foregroundColor(.darkBlue)
-            
-            VStack(spacing: 16) {
-                Button(action: onSelectAnother) {
-                    Text("Выбрать другую тему")
-                        .font(.custom("DelaGothicOne-Regular", size: 18))
+
+            VStack(spacing: 0) {
+                Text("Что делаем дальше?")
+                    .font(AppTypography.delaTitle)
+                    .foregroundColor(.darkBlue)
+
+                VStack(spacing: 16) {
+                    Button(action: onSelectAnother) {
+                        Text("Выбрать другую тему")
+                            .font(AppTypography.delaBody)
+                    }
+                    .appStyle(.chooseAnotherTopicButton)
+                    
+                    Button(action: onFinish) {
+                        Text("Закончить")
+                            .font(AppTypography.delaBody)
+                    }
+                    .appStyle(.stopGameButton)
                 }
-                .appStyle(.chooseAnotherTopicButton)
-                
-                Button(action: onFinish) {
-                    Text("Закончить")
-                        .font(.custom("DelaGothicOne-Regular", size: 18))
-                }
-                .appStyle(.stopGameButton) 
+                .padding(.top, 50)
             }
             .padding(.horizontal, 40)
-            
+
             Spacer()
         }
         .background(Color(.systemBackground))
@@ -48,4 +50,3 @@ struct ThemeEndingMenuView: View {
         onFinish: {}
     )
 }
-

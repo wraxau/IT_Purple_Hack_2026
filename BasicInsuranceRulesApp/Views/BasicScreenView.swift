@@ -4,8 +4,10 @@ struct BasicScreenView: View {
     let config: TextButtonImageScreenConfig
     let onButtonTap: (String) -> Void
     
-    private let darkBlue = Color(red: 47/255, green: 54/255, blue: 124/255)
-    
+    private var isThemeEndingMenuScreen: Bool {
+        config.title == "Что делаем дальше?" && (config.image == nil || config.image?.isEmpty == true)
+    }
+
     private var textTopPadding: CGFloat {
         if let imageName = config.image, !imageName.isEmpty {
             return 6
@@ -15,6 +17,10 @@ struct BasicScreenView: View {
     }
 
     private var buttonsTopPadding: CGFloat {
+        if isThemeEndingMenuScreen {
+            return 50
+        }
+
         let hasImage = config.image != nil && !config.image!.isEmpty
         let hasText = config.text != nil && !config.text!.isEmpty
         
@@ -29,9 +35,9 @@ struct BasicScreenView: View {
         VStack(spacing: 0) {
             
             Text(config.title ?? "Тема")
-                .font(.custom("DelaGothicOne-Regular", size: 17))
-                .foregroundColor(darkBlue)
-                .padding(.top, 40)
+                .font(AppTypography.delaButton)
+                .foregroundColor(.textPrimary)
+                .padding(.top, isThemeEndingMenuScreen ? 220 : 40)
             
             if let imageName = config.image, !imageName.isEmpty {
                 Image(imageName)
@@ -43,14 +49,18 @@ struct BasicScreenView: View {
             
             if let text = config.text, !text.isEmpty {
                 Text(text)
-                    .font(.custom("DelaGothicOne-Regular", size: 17))
-                    .foregroundColor(darkBlue)
+                    .font(AppTypography.delaButton)
+                    .foregroundColor(.textPrimary)
                     .multilineTextAlignment(.center)
                     .padding(.horizontal, 20)
                     .padding(.top, textTopPadding)
             }
             
-            Spacer()
+            if isThemeEndingMenuScreen {
+                Spacer(minLength: 30)
+            } else {
+                Spacer()
+            }
             
             VStack(spacing: 22) {
                 ForEach(Array(config.buttons.enumerated()), id: \.offset) { index, button in
@@ -59,7 +69,7 @@ struct BasicScreenView: View {
                         onButtonTap(button.action)
                     }) {
                         Text(button.title)
-                            .font(.custom("DelaGothicOne-Regular", size: 15))
+                            .font(AppTypography.delaButtonSmall)
                             .foregroundColor(textColor(for: index))
                     }
                     .frame(maxWidth: .infinity)
@@ -68,7 +78,7 @@ struct BasicScreenView: View {
                     .clipShape(Capsule())
                     .overlay(
                         Capsule()
-                            .stroke(Color.white, lineWidth: 1.5)
+                            .stroke(Color.outline, lineWidth: 1.5)
                     )
                     .shadow(color: .black.opacity(0.1), radius: 4, y: 2)
                 }
@@ -78,16 +88,16 @@ struct BasicScreenView: View {
             .padding(.bottom, 40)
             
         }
-        .background(Color(.systemBackground))
+        .background(Color.surface)
         .ignoresSafeArea(.keyboard)
     }
     
 
     private func bgColor(for index: Int) -> Color {
         switch index {
-        case 0: return Color(red: 0.75, green: 0.88, blue: 1.0)
-        case 1: return Color(red: 0.53, green: 0.64, blue: 1.0)
-        case 2: return Color(red: 1.0, green: 0.70, blue: 0.97)
+        case 0: return .lightBlue
+        case 1: return .indigoBlue
+        case 2: return .pinkCust
         default: return .gray
         }
     }
@@ -95,9 +105,9 @@ struct BasicScreenView: View {
 
     private func textColor(for index: Int) -> Color {
         switch index {
-        case 0: return Color(red: 0.15, green: 0.23, blue: 0.51)
-        case 1: return Color(red: 1.0, green: 0.70, blue: 0.97)
-        case 2: return Color(red: 0.89, green: 0.98, blue: 0.53)
+        case 0: return .darkBlue
+        case 1: return .pinkCust
+        case 2: return .lime
         default: return .black
         }
     }

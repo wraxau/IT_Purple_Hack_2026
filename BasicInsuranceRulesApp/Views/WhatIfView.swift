@@ -9,14 +9,14 @@ struct WhatIfView: View {
         VStack(spacing: 0) {
         
             Text("Мошенники")
-                .font(.custom("DelaGothicOne-Regular", size: 17))
+                .font(AppTypography.delaButton)
                 .foregroundColor(.darkBlue)
                 .padding(.top, 40)
             
             Spacer()
             
             Text("Как бы было...")
-                .font(.custom("DelaGothicOne-Regular", size: 20))
+                .font(AppTypography.delaSubtitle)
                 .foregroundColor(.darkBlue)
                 .padding(.bottom, 30)
             
@@ -25,7 +25,7 @@ struct WhatIfView: View {
                 ForEach(Array(alternatives.enumerated()), id: \.offset) { index, item in
                     Button(action: item.action) {
                         Text(item.label)
-                            .font(.custom("DelaGothicOne-Regular", size: 18))
+                            .font(AppTypography.delaBody)
                     }
                     .appStyle(index == 0 ? .variantAButton : .variantCButton)
                 }
@@ -35,13 +35,13 @@ struct WhatIfView: View {
             Spacer()
             Button(action: onSkip) {
                 Text("Пропустить")
-                    .font(.custom("DelaGothicOne-Regular", size: 18))
+                    .font(AppTypography.delaBody)
             }
             .appStyle(.variantCButton)
             .padding(.horizontal, 40)
             .padding(.bottom, 40)
         }
-        .background(Color(.systemBackground))
+        .background(Color.surface)
         .ignoresSafeArea(.keyboard)
     }
 }
@@ -56,4 +56,3 @@ struct WhatIfView: View {
         onSkip: {}
     )
 }
-

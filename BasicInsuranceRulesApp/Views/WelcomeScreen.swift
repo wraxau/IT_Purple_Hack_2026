@@ -14,26 +14,25 @@ struct WelcomeView: View {
                 .padding(.top, 60)
 
             Text("Привет!")
-                .font(.custom("DelaGothicOne-Regular", size: 28))
-        
-                .foregroundColor(Color(red: 47/255, green: 54/255, blue: 124/255))
+                .font(AppTypography.delaTitleLarge)
+                .foregroundColor(.textPrimary)
                 .padding(.top, 20)
             
             VStack(spacing: 16) {
                 Text("Иногда в жизни случаются\nнеприятные ситуации.")
                     .multilineTextAlignment(.center)
-                    .font(.custom("DelaGothicOne-Regular", size: 20))
-                    .foregroundColor(Color(red: 47/255, green: 54/255, blue: 124/255))
+                    .font(AppTypography.delaSubtitle)
+                    .foregroundColor(.textPrimary)
                 
                 Text("Риск - это вероятность,\nчто такая ситуация\nпроизойдёт.")
                     .multilineTextAlignment(.center)
-                    .font(.custom("DelaGothicOne-Regular", size: 20))
-                    .foregroundColor(Color(red: 47/255, green: 54/255, blue: 124/255))
+                    .font(AppTypography.delaSubtitle)
+                    .foregroundColor(.textPrimary)
                 
                 Text("Давай посмотрим, какие\nбывают риски и как их\nможно предусмотреть.")
                     .multilineTextAlignment(.center)
-                    .font(.custom("DelaGothicOne-Regular", size: 20))
-                    .foregroundColor(Color(red: 47/255, green: 54/255, blue: 124/255))
+                    .font(AppTypography.delaSubtitle)
+                    .foregroundColor(.textPrimary)
             }
             .padding(.horizontal, 20)
             
@@ -41,18 +40,18 @@ struct WelcomeView: View {
             
             Button(action: onStart) {
                 Text("К темам")
-                    .font(.custom("DelaGothicOne-Regular", size: 20))
-                    .foregroundColor(Color(red: 47/255, green: 54/255, blue: 124/255))
+                    .font(AppTypography.delaSubtitle)
+                    .foregroundColor(.textPrimary)
             }
             .frame(maxWidth: .infinity)
             .frame(height: 60)
-            .background(Color(red: 224/255, green: 255/255, blue: 148/255))
+            .background(Color.lime)
             .cornerRadius(30)
             .shadow(color: .black.opacity(0.1), radius: 5, y: 5)
             .padding(.horizontal, 40)
             .padding(.bottom, 40)
         }
-        .background(Color.white)
+        .background(Color.appBackground)
         .ignoresSafeArea(.keyboard)
     }
 }
