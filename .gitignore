@@ -1,0 +1,17 @@
+# Xcode / macOS
+.DS_Store
+*.xcuserdatad
+!*.xcuserdatad/Contents.xcworkspacedata
+*.swp
+*.swo
+*~
+.project
+*.zip
+*.backup
+*.log
+build/
+DerivedData/
+
+# Проектные артефакты
+*.xcodeproj/project.xcworkspace/xcuserdata/
+*.xcodeproj/xcuserdata/
